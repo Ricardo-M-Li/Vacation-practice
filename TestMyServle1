@@ -1,0 +1,70 @@
+package cn.shuise.web.servlet2;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.junit.Test;
+
+/**
+ * @author shuise
+ * @data 2019年1月13日
+ * @version V1.0
+ */
+public class TestMyServlet {
+	@Test
+	public void testMyServlet(){
+			
+		try {
+			
+			//1.创建解析器对象
+				SAXReader saxReader = new SAXReader();
+				
+			//2.使用解析器解析web.xml获取Document文档
+				Document domcument = saxReader.read("src/cn/shuise/web/servlet2/web.xml");
+			
+			//3.获取根节点
+				Element rootElement = domcument.getRootElement();
+				
+			//4.根据根节点名称获取子节点
+				Element servletElement = rootElement.element("servlet");
+				
+			//5.根据子节点获取子节点文本
+				String servletClass = servletElement.element("servlet-class").getText();
+			
+			//6.根据子节点文本获取字节码文件
+				Class clazz = Class.forName(servletClass);
+			
+			//7.创建实例对象
+				MyServlet1 my = (MyServlet1)clazz.newInstance();
+		   
+			//8使用其中的方法
+				my.init();
+				my.service();
+				my.destroy();
+			
+				
+			/*
+			//创建解析对象
+			SAXReader saxReader = new SAXReader();
+			//使用解析器加载web.xml获得Document文档
+			Document document = saxReader.read("src/cn/shuise/web/servlet2/web.xml");
+			//获取根元素节点
+			Element rootElement = document.getRootElement();
+			//根据根节点名称获取子节点
+			Element sevletElement = rootElement.element("servlet");
+			//根据元素名称获取servlet-class文本节点
+			String servletClass = sevletElement.element("servlet-class").getText();
+			
+			//通过类全名获取字节码文件
+			Class clazz = Class.forName(servletClass);
+			//创建实例对象
+			clazz.newInstance();
+			*/
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+
+	}
+}
