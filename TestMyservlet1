@@ -1,0 +1,37 @@
+
+package cn.shuise.web.servlet;
+
+import org.junit.Test;
+
+/**
+ * @author shuise
+ * @data 2019年1月12日
+ * @version V1.0
+ */
+public class TestMyservlet {
+	
+	@Test
+	public void testMyservlet(){
+		MyServletImp my = new  MyServletImp();
+		my.init();
+		my.service();
+		my.destroy();
+	}
+
+	@Test
+	public void testMyservlet2(){
+		try {
+			String className = "cn.shuise.web.servlet.MyServletImp";
+			Class clazz = Class.forName(className);
+			MyServletImp my = (MyServletImp) clazz.newInstance();
+			my.init();
+			my.service();
+			my.destroy();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		} 
+	}
+	
+
+}
