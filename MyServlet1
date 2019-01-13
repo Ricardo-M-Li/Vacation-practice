@@ -1,0 +1,30 @@
+
+package cn.shuise.web.servlet2;
+
+import cn.shuise.web.servlet.IMyServlet;
+
+/**
+ * @author shuise
+ * @data 2019年1月13日
+ * @version V1.0
+ */
+public class MyServlet1 implements IMyServlet {
+
+	
+	@Override
+	public void init() {
+		System.out.println("MyServlet1初始");
+	}
+
+	
+	@Override
+	public void service() {
+		System.out.println("MyServlet1开始");
+	}
+
+	@Override
+	public void destroy() {
+		System.out.println("MyServlet1结束");
+	}
+
+}
